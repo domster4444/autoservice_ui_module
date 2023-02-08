@@ -1,0 +1,12 @@
+{
+    "version": 3,
+    "mappings": "AAmCA,AAAA,CAAC,CAAC;EACA,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,UAAU,EAAE,UAAU;CACvB;;AAED,AAAA,CAAC,CAAC;EACA,eAAe,EAAE,IAAI;CACtB;;AAED,AAAA,KAAK,CAAC;EACJ,OAAO,EAAE,IAAI;CACd",
+    "sources": [
+        "globals.scss",
+        "1-helpers/_functions.scss",
+        "1-helpers/_mixins..scss",
+        "1-helpers/_variables.scss"
+    ],
+    "names": [],
+    "file": "globals.css"
+}

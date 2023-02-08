@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { createGlobalStyle } from "styled-components";
+// import { useTranslation } from "react-i18next";
+
+//* Component Import
+import Toolbar from "components/Toolbar";
+
+// ? include styling
+import "styles/scss/globals.css";
+
+const GlobalStyles = createGlobalStyle`
+        *{
+          margin:0;
+          padding:0;
+        }
+
+        :root{
+          --primary-black: #000000;
+          --primary-white: #ffffff;
+          --primary-blue: #0f5288;
+        }
+`;
 
 function App() {
+  // const { t } = useTranslation();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      <Toolbar />
+      {/* ============== BODY STARTS HERE   */}
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore, perspiciatis?
+      {/* ============== BODY  ENDS HERE   */}
+    </>
   );
 }
 
