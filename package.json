@@ -3,19 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.6",
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.3",
     "concurrently": "^7.6.0",
+    "formik": "^2.2.9",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.1.1",
     "react": "^18.2.0",
+    "react-awesome-reveal": "^4.2.3",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.1.4",
     "react-icons": "^4.7.1",
+    "react-lettered-avatar": "^1.0.2",
+    "react-loading-skeleton": "^3.1.1",
+    "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
+    "react-toastify": "^9.1.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
     "workbox-background-sync": "^6.5.4",
@@ -29,7 +35,8 @@
     "workbox-range-requests": "^6.5.4",
     "workbox-routing": "^6.5.4",
     "workbox-strategies": "^6.5.4",
-    "workbox-streams": "^6.5.4"
+    "workbox-streams": "^6.5.4",
+    "yup": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -58,6 +65,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
+    "@testing-library/react": "^13.4.0",
     "husky": "^8.0.3"
   }
 }

@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
 import { createGlobalStyle } from "styled-components";
 // import { useTranslation } from "react-i18next";
 
-//* Component Import
-import Toolbar from "components/Toolbar";
+//* import layout
+import Layout from "components/Layout";
+
+// *pages
+import Login from "Pages/Login";
 
 // ? include styling
 import "styles/scss/globals.css";
+import ForgotPassword from "Pages/ForgotPassword";
 
 const GlobalStyles = createGlobalStyle`
         *{
@@ -18,19 +25,103 @@ const GlobalStyles = createGlobalStyle`
           --primary-black: #000000;
           --primary-white: #ffffff;
           --primary-blue: #0f5288;
+          --primary-grey: #dadbdf;
         }
 `;
 
 function App() {
   // const { t } = useTranslation();
 
+  useEffect(() => {
+    if (Notification.permission !== "granted") Notification.requestPermission();
+  });
+
   return (
     <>
       <GlobalStyles />
-      <Toolbar />
-      {/* ============== BODY STARTS HERE   */}
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore, perspiciatis?
-      {/* ============== BODY  ENDS HERE   */}
+      <Router>
+        <Routes>
+          <Route path='/' element={<Login />} />
+          <Route path='/forgotpassword' element={<ForgotPassword />} />
+          //* Dashboard Routes
+          <Route
+            path='/ongoing'
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          <Route
+            path='/monthly'
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          <Route
+            path='/yearly'
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          //* Service Routes
+          <Route
+            path='/service-create'
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          <Route
+            path='/service-list'
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          //* Category Routes
+          <Route
+            path='/category-create'
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          <Route
+            path='/category-list'
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          //* Organization Routes
+          <Route
+            path='/organization-create'
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          <Route
+            path='/organization-list'
+            element={
+              <Layout>
+                <Login />
+              </Layout>
+            }
+          />
+          //* Users Routes
+        </Routes>
+      </Router>
     </>
   );
 }

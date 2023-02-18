@@ -1,5 +1,6 @@
 import React from "react";
-import Toolbar from "./Toolbar/Toolbar";
+//* Component Import
+import Toolbar from "components/Toolbar";
 
 // import {useUser} from 'service '
 
@@ -14,9 +15,20 @@ const Layout = ({ children }) => {
   //     return <div> Loading ...</div>;
   //   }
 
+  const menus = [
+    {
+      menuName: "login",
+      path: "/login",
+    },
+    {
+      menuName: "forgot",
+      path: "/forgot-password",
+    },
+  ];
+
   return (
     <>
-      <Toolbar />
+      <Toolbar menus={menus} />
       {children}
     </>
   );

@@ -1,31 +1,26 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 // ? utilities
 import LoginFormAnimation from "library/utilities/animations/LoginFormAnimation";
 import LoginHeadingAnimation from "library/utilities/animations/LoginHeadingsAnimations";
-import FormErrorTag from "components/FormErrorTag/FormErrorTag";
 
 // * components
 import Logo from "components/Logo";
 import Heading from "components/polymorphicComponents/Heading";
 import SubParagraph from "components/SubParagraph";
-import { TertiaryBtn } from "components/Buttons/Buttons";
-
 // * skeleton components
 import LogoSkeleton from "components/Logo/LogoSkeleton";
 import Skeleton from "react-loading-skeleton";
 
-const ForgotPasswordBody = styled.main`
+const LoginBody = styled.main`
   min-height: 100vh;
   background: var(--primary-blue);
 `;
 
-const Form = styled.form`
+const LoginForm = styled.form`
   max-width: 20rem;
   display: flex;
   flex-direction: column;
@@ -39,28 +34,29 @@ const FormInput = styled.input`
   padding: 0.4rem 0.75rem;
 `;
 
+const TertiaryButton = styled.button`
+  padding: 0.45rem 1.5rem;
+  outline: none;
+  border: none;
+  background: #0c3a60;
+  border-radius: 0.5rem;
+  transition: 0.5s;
+
+  &:active {
+    /* bouncing effect  */
+    transform: scale(0.95);
+    transition: 0.1s;
+  }
+
+  &:hover {
+    background: #0c3a60;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+`;
+
 const ForgotPassword = () => {
-  const onSubmit = (values, actions) => {
-    actions.resetForm();
-    alert(`submitted values ${values.phoneNumber} `);
-  };
-
-  const forgotPasswordSchema = Yup.object().shape({
-    phoneNumber: Yup.string()
-      .matches(/^(\+\d{1,3}[- ]?)?\d{10}$/, "Invalid phone number")
-      .required("Phone number is required"),
-  });
-
-  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      phoneNumber: "",
-    },
-    validationSchema: forgotPasswordSchema,
-    onSubmit,
-  });
-
   return (
-    <ForgotPasswordBody>
+    <LoginBody>
       {/* ---------------------  */}
       <LoginHeadingAnimation>
         <div className='d-flex justify-content-center pt-5'>
@@ -99,18 +95,8 @@ const ForgotPassword = () => {
       {/* ---------------------  */}
 
       <LoginFormAnimation>
-        <Form onSubmit={handleSubmit} className='mt-4'>
-          <header>
-            <Heading as='h5' className='text-white text-center'>
-              Login
-              {/* <div className='ms-2 pt-2'>
-              <Skeleton style={{ width: "4rem", height: "0.8rem" }} duration={0.7} />
-            </div> */}
-            </Heading>
-          </header>
-          <FormInput name='phoneNumber' placeholder='Enter  phone number' type='text' className='roboto_regular mt-3 ' value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
-          {errors.phoneNumber && <FormErrorTag> {errors.phoneNumber}</FormErrorTag>}
-
+        <LoginForm>
+          <FormInput placeholder='Enter  phone number' type='text' className='roboto_regular mt-3 ' />
           <div className='d-flex justify-content-end mt-3'>
             <Link to='/'>
               <SubParagraph className='text-center'>
@@ -122,12 +108,10 @@ const ForgotPassword = () => {
             </Link>
           </div>
 
-          <TertiaryBtn type='submit' className='text-white mt-3'>
-            Login
-          </TertiaryBtn>
-        </Form>
+          <TertiaryButton className='text-white'>Submit</TertiaryButton>
+        </LoginForm>
       </LoginFormAnimation>
-    </ForgotPasswordBody>
+    </LoginBody>
   );
 };
 
