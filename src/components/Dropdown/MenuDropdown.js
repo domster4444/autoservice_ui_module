@@ -17,7 +17,7 @@ const MenuDropdown = ({ children }) => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu className='p-2'>
-          <Link to='/logout'>
+          <Link to='/'>
             <Dropdown.Item className='roboto_regular rounded-2 px-4 py-2 ' href='#/action-1'>
               <FiLogOut /> <span className='ms-2'>Logout</span>
             </Dropdown.Item>

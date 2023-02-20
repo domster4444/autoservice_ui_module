@@ -25,7 +25,7 @@ const Avatar = ({ name, role, url }) => {
     <>
       <AvatarContainer>
         <AvatarImageContainer>
-          <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-hDNNmnm6W8xUKHHq56HF7dXaBOy473V6PSlm2VSQXD6nfO3yF5OgyTqwH0HQG8hy64U&usqp=CAU' alt='avatar' />
+          <img src='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png' alt='avatar' />
 
           {/* <LetteredAvatar name={name} className='mt-0' /> */}
         </AvatarImageContainer>

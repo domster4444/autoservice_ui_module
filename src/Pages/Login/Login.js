@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -39,9 +39,12 @@ const FormInput = styled.input`
 `;
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const onSubmit = (values, actions) => {
-    actions.resetForm();
-    alert(`submitted values ${values.phoneNumber} ${values.password}`);
+    navigate(`dashboard-monthly`);
+
+    // actions.resetForm();
   };
 
   const loginSchema = Yup.object().shape({

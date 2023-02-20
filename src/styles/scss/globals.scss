@@ -26,9 +26,13 @@
 // @import "4-layout/footer";
 
 //? 5-MODULES
-// @import "5-modules/tostify";
+@import "5-modules/chat";
 @import "5-modules/menuDropdown";
 @import "5-modules/spinner";
+@import "5-modules/featured-leaf";
+@import "5-modules/vehicle-card";
+@import "5-modules/mechanic_card";
+@import "5-modules/report_card";
 
 //? 5-PAGES
 // @import "6-pages/404";
@@ -47,4 +51,56 @@ a {
 
 input {
   outline: none;
+}
+
+// ================== Dashboard layouts styling
+.db-body-bg,
+body {
+  background-color: var(--primary-db-bg);
+}
+
+#dashboard-aside {
+  border-radius: 1rem;
+  background-color: var(--primary-white);
+  @media (max-width: 1000px) {
+    display: none !important;
+  }
+}
+
+#dashboard-body {
+  min-height: 90vh;
+  width: 100%;
+  background-color: var(--primary-white);
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+}
+
+// ======================== breadcrumb styling
+
+ul.breadcrumb {
+  width: fit-content;
+}
+ul.breadcrumb li {
+  font-size: 1.125rem;
+}
+ul.breadcrumb li + li:before {
+  padding: 0.5rem;
+  color: rgb(192, 192, 192);
+  content: "/\00a0";
+}
+ul.breadcrumb li a {
+  color: #0c4b7fbb;
+}
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+// =========================== toastify styling
+.Toastify__progress-bar {
+  background-color: #0f5288 !important;
+}
+.Toastify__toast-icon svg path {
+  fill: #0f5288;
 }

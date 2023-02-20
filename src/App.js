@@ -5,8 +5,12 @@ import { Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 // import { useTranslation } from "react-i18next";
 
+// * import data
+import { chartData as monthlyChartData } from "library/chartData/monthly";
+import { chartData as yearlyChartData } from "library/chartData/yearly";
+
 //* import layout
-import Layout from "components/Layout";
+import Layout from "components/DashboardLayout";
 
 // *pages
 import Login from "Pages/Login";
@@ -14,6 +18,10 @@ import Login from "Pages/Login";
 // ? include styling
 import "styles/scss/globals.css";
 import ForgotPassword from "Pages/ForgotPassword";
+import AdminHome from "Pages/Dashboard/Admin/AdminHome";
+import Chat from "Pages/Chat";
+
+const DashboardToolbarMenus = [];
 
 const GlobalStyles = createGlobalStyle`
         *{
@@ -26,6 +34,7 @@ const GlobalStyles = createGlobalStyle`
           --primary-white: #ffffff;
           --primary-blue: #0f5288;
           --primary-grey: #dadbdf;
+          --primary-db-bg: #f1f1f1;
         }
 `;
 
@@ -45,26 +54,18 @@ function App() {
           <Route path='/forgotpassword' element={<ForgotPassword />} />
           //* Dashboard Routes
           <Route
-            path='/ongoing'
+            path='/dashboard-monthly'
             element={
-              <Layout>
-                <Login />
+              <Layout menus={DashboardToolbarMenus} pageTitle={"Dashboard"} path={["Admin", "Home"]}>
+                <AdminHome chartData={monthlyChartData} />
               </Layout>
             }
           />
           <Route
-            path='/monthly'
+            path='/dashboard-yearly'
             element={
-              <Layout>
-                <Login />
-              </Layout>
-            }
-          />
-          <Route
-            path='/yearly'
-            element={
-              <Layout>
-                <Login />
+              <Layout menus={DashboardToolbarMenus} pageTitle={"Dashboard"} path={["Admin", "Home"]}>
+                <AdminHome chartData={yearlyChartData} />
               </Layout>
             }
           />
@@ -72,7 +73,7 @@ function App() {
           <Route
             path='/service-create'
             element={
-              <Layout>
+              <Layout menus={DashboardToolbarMenus} pageTitle={"Home"} path={["Dashboard", "Update Organization"]}>
                 <Login />
               </Layout>
             }
@@ -80,7 +81,7 @@ function App() {
           <Route
             path='/service-list'
             element={
-              <Layout>
+              <Layout menus={DashboardToolbarMenus} pageTitle={"Home"} path={["Dashboard", "Update Organization"]}>
                 <Login />
               </Layout>
             }
@@ -89,7 +90,7 @@ function App() {
           <Route
             path='/category-create'
             element={
-              <Layout>
+              <Layout menus={DashboardToolbarMenus} pageTitle={"Home"} path={["Dashboard", "Update Organization"]}>
                 <Login />
               </Layout>
             }
@@ -97,7 +98,7 @@ function App() {
           <Route
             path='/category-list'
             element={
-              <Layout>
+              <Layout menus={DashboardToolbarMenus} pageTitle={"Home"} path={["Dashboard", "Update Organization"]}>
                 <Login />
               </Layout>
             }
@@ -114,12 +115,13 @@ function App() {
           <Route
             path='/organization-list'
             element={
-              <Layout>
+              <Layout menus={DashboardToolbarMenus} pageTitle={"Home"} path={["Dashboard", "Update Organization"]}>
                 <Login />
               </Layout>
             }
           />
-          //* Users Routes
+          //* Users Routes //* Chat Routes
+          <Route path='/chat' element={<Chat />} />
         </Routes>
       </Router>
     </>

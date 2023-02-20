@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import { SkeletonTheme } from "react-loading-skeleton";
 
+import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
