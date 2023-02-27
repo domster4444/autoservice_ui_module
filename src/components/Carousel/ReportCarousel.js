@@ -43,7 +43,7 @@ const ReportCarousel = ({ slidesToShow = 3 }) => {
             <h6 className='text-primary-blue text-center'>Report1</h6>
             <p className='cursor text-primary-blue text-center'>
               <a download href={Reports} className='link-nav text-decoration-none'>
-                <i class='bx bx-download'></i>
+                <i className='bx bx-download'></i>
                 Download
               </a>
             </p>
@@ -59,7 +59,7 @@ const ReportCarousel = ({ slidesToShow = 3 }) => {
             <h6 className='text-primary-blue text-center'>Report2</h6>
             <p className='cursor text-primary-blue text-center'>
               <a download href={Reports} className='link-nav text-decoration-none'>
-                <i class='bx bx-download'></i>
+                <i className='bx bx-download'></i>
                 Download
               </a>
             </p>
@@ -75,7 +75,7 @@ const ReportCarousel = ({ slidesToShow = 3 }) => {
             <h6 className='text-primary-blue text-center'>Report3</h6>
             <p className='cursor text-primary-blue text-center'>
               <a download href={Reports} className='link-nav text-decoration-none'>
-                <i class='bx bx-download'></i>
+                <i className='bx bx-download'></i>
                 Download
               </a>
             </p>

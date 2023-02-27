@@ -78,7 +78,7 @@ const NavDropdown = ({ title = "default menu title", linkArray = ["one", "two"],
                 {(() => {
                   return nameList.map((i, index) => {
                     return (
-                      <Link className='text-decoration-none  text-primary-blue' to={`/${linkArray[index]}`}>
+                      <Link key={index} className='text-decoration-none  text-primary-blue' to={`/${linkArray[index]}`}>
                         <li
                           // style={{
                           //   backgroundColor:

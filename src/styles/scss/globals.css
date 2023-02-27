@@ -8,10 +8,45 @@
   /* Standard syntax */
 }
 
+@media only screen and (max-width: 1326px) {
+  :root {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  :root {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 1326px) {
+  :root {
+    font-size: 0.75vw;
+  }
+}
+
 .background-transparent {
   background-color: transparent !important;
   border: none;
   padding: 0.5rem 1.5rem;
+}
+
+.blue-bg {
+  background-color: var(--primary-blue) !important;
+}
+
+.btstrp-shadow-effect:active {
+  -webkit-transition: all ease-in-out 0ms;
+  transition: all ease-in-out 0ms;
+  -webkit-box-shadow: 0rem 0rem 0.125rem 0.3125rem #c9d6f9 !important;
+          box-shadow: 0rem 0rem 0.125rem 0.3125rem #c9d6f9 !important;
 }
 
 .text-primary-blue {
@@ -25,6 +60,10 @@
 .primary-shadow {
   -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
           box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.text-dark-blue {
+  color: var(--primary-blue);
 }
 
 .dashboard-chart-page-container {
@@ -80,6 +119,32 @@
 
 .recharts-surface {
   margin-left: -3rem;
+}
+
+.css-13cymwt-control,
+.css-t3ipsp-control {
+  border-radius: 0px !important;
+}
+
+.css-13cymwt-control {
+  border-top: 0px solid transparent !important;
+  border-left: 0px solid transparent !important;
+  border-right: 0px solid transparent !important;
+  border-bottom: 2px solid #ced4da !important;
+}
+
+.css-13cymwt-control {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.css-t3ipsp-control {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  border-top: 0px solid transparent !important;
+  border-left: 0px solid transparent !important;
+  border-right: 0px solid transparent !important;
+  border-bottom: 2px solid #0f5288 !important;
 }
 
 .roboto_regular_base, .roboto_light, .roboto_regular, .roboto_medium, .roboto_bold {
@@ -367,6 +432,122 @@
 .download-report-card:hover .report-logo-img {
   -webkit-transform: translateY(-0.8rem) scale(1.1);
           transform: translateY(-0.8rem) scale(1.1);
+}
+
+#visitor-form input:active,
+#visitor-form input:focus,
+#visitor-form select:active,
+#visitor-form select:focus,
+#visitor-form textarea:active,
+#visitor-form textarea:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  outline: 0px !important;
+}
+
+#visitor-form input,
+#visitor-form select,
+#visitor-form textarea {
+  border-left: 2px solid transparent !important;
+  border-right: 2px solid transparent !important;
+  border-top: 2px solid transparent !important;
+  border-bottom: 2px solid #ced4da !important;
+  border-radius: 0rem;
+}
+
+#visitor-form input:focus,
+#visitor-form select:focus,
+#visitor-form textarea:focus {
+  border-bottom: 2px solid var(--primary-blue) !important;
+  outline: none;
+}
+
+.contract-user-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.contract-user-container .right-division {
+  width: 100%;
+}
+
+@media only screen and (max-width: 900px) {
+  .contract-user-container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  .contract-user-container .left-division .contract-container {
+    width: 100%;
+  }
+}
+
+.table-shadow-wrapper > div:nth-child(2) {
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 1rem;
+  -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.react-bootstrap-table table {
+  cursor: pointer;
+  background: white;
+  -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.react-bootstrap-table table tr {
+  padding: 1rem !important;
+}
+
+.react-bootstrap-table table tr:hover {
+  background-color: #f8f8f8;
+}
+
+.rdt_TableHeadRow {
+  background-color: #1463a3 !important;
+  border-radius: 0.4rem;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+div.rdt_TableRow {
+  border-left: 2px solid transparent !important;
+  font-size: 1rem;
+}
+
+div.rdt_TableRow:hover {
+  border-left: 2px solid #5699d1 !important;
+}
+
+.filter-text {
+  border-bottom: 3px solid #0f5288 !important;
+}
+
+.data-table-extensions-filter .icon {
+  background-size: 1.5rem;
+}
+
+.verification-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+}
+
+.badge-verified {
+  background-color: #28a745;
+}
+
+.badge-unverified {
+  background-color: #dc3545;
 }
 
 * {

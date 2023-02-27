@@ -23,7 +23,7 @@ const VehicleCard = ({ carImg, carName, carDescription, billBookFile }) => {
       </div>
       <a download href={billBookFile} className='text-decoration-none link-nav fs-6 pt-2'>
         <div className='d-flex flex-column   text-center'>
-          <i class='bx bx-file text-primary-blue fs-4 m-0'></i>
+          <i className='bx bx-file text-primary-blue fs-4 m-0'></i>
           Download
         </div>
       </a>

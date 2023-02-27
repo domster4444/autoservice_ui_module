@@ -5,6 +5,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import FormErrorTag from "components/FormErrorTag/FormErrorTag";
 
+//?  states import
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment, incrementByAmount } from "redux/features/counter/counterSlice";
+
 // ? utilities
 import LoginFormAnimation from "library/utilities/animations/LoginFormAnimation";
 import LoginHeadingAnimation from "library/utilities/animations/LoginHeadingsAnimations";
@@ -18,6 +22,9 @@ import { TertiaryBtn } from "components/Buttons/Buttons";
 // * skeleton components
 import LogoSkeleton from "components/Logo/LogoSkeleton";
 import Skeleton from "react-loading-skeleton";
+
+// ? rkt query import
+import { useGetAllCategoriesQuery } from "redux/api/category/categoryApi";
 
 const LoginBody = styled.main`
   min-height: 100vh;
@@ -39,12 +46,23 @@ const FormInput = styled.input`
 `;
 
 const Login = () => {
+  const { data, error, isLoading } = useGetAllCategoriesQuery();
+
+  if (data) {
+    console.log(data);
+  }
+
+  const dispatch = useDispatch();
+
+  const count = useSelector((state) => {
+    return state.counter.value;
+  });
+
   const navigate = useNavigate();
 
   const onSubmit = (values, actions) => {
     navigate(`dashboard-monthly`);
-
-    // actions.resetForm();
+    actions.resetForm();
   };
 
   const loginSchema = Yup.object().shape({
@@ -62,6 +80,14 @@ const Login = () => {
     validationSchema: loginSchema,
     onSubmit,
   });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>An error occurred: {error.message}</div>;
+  }
 
   return (
     <LoginBody>
@@ -81,6 +107,21 @@ const Login = () => {
         </div> */}
       </Heading>
       <SubParagraph className='text-center'>
+        {/* {count} */}
+        {/* <button
+          onClick={() => {
+            dispatch(increment());
+          }}
+        >
+          Increase
+        </button> */}
+        {/* <button
+          onClick={() => {
+            dispatch(decrement());
+          }}
+        >
+          Dec
+        </button> */}
         One stop solution to all your car needs.
         {/* <div>
           <Skeleton style={{ width: "18rem", height: "0.9rem" }} duration={0.7} />
@@ -101,11 +142,8 @@ const Login = () => {
           </header>
           <FormInput name='phoneNumber' placeholder='Enter  phone number' type='text' className='roboto_regular mt-3 ' value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
           {errors.phoneNumber && <FormErrorTag> {errors.phoneNumber}</FormErrorTag>}
-
           <FormInput name='password' placeholder='Enter  password' type='password' className='roboto_regular mt-3 ' value={values.password} onChange={handleChange} onBlur={handleBlur} />
-
           {errors.phoneNumber && <FormErrorTag> {errors.password}</FormErrorTag>}
-
           <div className='d-flex justify-content-end mt-3'>
             <Link to='/forgotpassword'>
               <SubParagraph className='text-center'>
@@ -116,8 +154,7 @@ const Login = () => {
               </SubParagraph>
             </Link>
           </div>
-
-          <TertiaryBtn type='submit' className='text-white mt-3'>
+          <TertiaryBtn className='text-white mt-3' onClick={onSubmit}>
             Login
           </TertiaryBtn>
         </LoginForm>

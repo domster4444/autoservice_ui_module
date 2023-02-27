@@ -6,10 +6,14 @@ const Breadcrumb = ({ tagArray = ["one", "two", "three", "four"] }) => {
       {(() => {
         return tagArray.map((i, index) => {
           if (index === tagArray.length - 1) {
-            return <li className='d-inline text-primary-blue'>{i}</li>;
+            return (
+              <li key={index} className='d-inline text-primary-blue'>
+                {i}
+              </li>
+            );
           } else {
             return (
-              <li className='d-inline'>
+              <li key={index} className='d-inline'>
                 <a className='text-decoration-none' href='#'>
                   {i}
                 </a>

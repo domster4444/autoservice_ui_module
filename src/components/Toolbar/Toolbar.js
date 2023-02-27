@@ -53,7 +53,7 @@ const Toolbar = ({ menus }) => {
       <NavBar>
         <ul>
           <li className='logo__container'>
-            <img src={Logo} alt='autoservice' class='nav__logo' />
+            <img src={Logo} alt='autoservice' className='nav__logo' />
           </li>
           <li className='menu__container'>
             <ul className='menu__list'>
@@ -61,7 +61,7 @@ const Toolbar = ({ menus }) => {
                 return menus.map((menu, index) => {
                   return (
                     <>
-                      <Link class='menu-item' key={index} to={menu.path}>
+                      <Link className='menu-item' key={index} to={menu.path}>
                         {menu.menuName}
                       </Link>
                     </>

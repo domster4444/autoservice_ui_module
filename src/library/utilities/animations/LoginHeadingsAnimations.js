@@ -4,7 +4,7 @@ import { Reveal } from "react-awesome-reveal";
 // center the heading in the middle of the page vertically and then later put it in it's original position
 const loginHeadingAnimation = keyframes`
     0% {
-        padding-top: 11rem;
+        padding-top: 20vh;
     }
     100% {
         padding-top: 0rem;
