@@ -107,7 +107,7 @@ const Chat = () => {
         </div> */}
       </div>
       {/* <div className='d-flex'>
-        <input
+        <inputbut 
           className='rounded-1 border-0 border-bottom'
           name='username'
           type='text'

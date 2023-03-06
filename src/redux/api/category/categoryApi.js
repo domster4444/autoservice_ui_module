@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { globalConstant } from "constant/constant";
 
 export const categoryApi = createApi({
-  reducerPath: "authenticationApi",
+  reducerPath: "categoryApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://jsonplaceholder.typicode.com",
   }),

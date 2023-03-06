@@ -5,7 +5,7 @@ const Navigation = () => {
     <aside id='dashboard-aside' className='p-3'>
       <h4 className='text-primary-blue'> NAVIGATION </h4>
       <hr />
-      <NavDropdown title='Dashboard' linkArray={["dashboard-monthly", "dashboard-yearly", "chat"]} nameList={["Monthly", "Yearly", "Chat"]} />
+      <NavDropdown title='Dashboard' linkArray={["dashboard-monthly", "dashboard-yearly", "chat", "chat-room"]} nameList={["Monthly", "Yearly", "Chat", "Chat Room"]} />
       <NavDropdown title='Request' linkArray={["service-create", "service-list"]} nameList={["Create", "List"]} />
       <NavDropdown title='Vehicle' linkArray={["vehicle-create", "vehicle-list"]} nameList={["Create", "List"]} />
 

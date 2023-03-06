@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 //* IMPORT COMPONENTS
 import MenuDropdown from "components/Dropdown/MenuDropdown";
@@ -48,6 +49,10 @@ const NavBar = styled.nav`
 `;
 
 const Toolbar = ({ menus }) => {
+  const loggedUser = useSelector((state) => state.loggedUser);
+  const { avatar, name } = loggedUser.user;
+  const roles = loggedUser.user.roles.map((role) => role).join(", ");
+  console.log(roles);
   return (
     <header className='roboto_regular'>
       <NavBar>
@@ -71,7 +76,7 @@ const Toolbar = ({ menus }) => {
 
               <li>
                 <MenuDropdown>
-                  <Avatar name='Admin' role='admin' />
+                  <Avatar name={name} role={roles} url={avatar} />
                 </MenuDropdown>
               </li>
             </ul>

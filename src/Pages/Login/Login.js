@@ -1,13 +1,18 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { useFormik } from "formik";
 import * as Yup from "yup";
+import React from "react";
+import { useFormik } from "formik";
+import { Link, useNavigate } from "react-router-dom";
+import { storeDataByValue } from "services/LocalStorageService";
+import styled from "styled-components";
 import FormErrorTag from "components/FormErrorTag/FormErrorTag";
+import toastMsg from "library/utilities/toastMsg";
+
+//*services
+import { UserApiService } from "services/auth/AuthService";
 
 //?  states import
-import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment, incrementByAmount } from "redux/features/counter/counterSlice";
+import { useDispatch } from "react-redux";
+import { setLoggedUser } from "redux/features/loggedUser/loggedUserSlice";
 
 // ? utilities
 import LoginFormAnimation from "library/utilities/animations/LoginFormAnimation";
@@ -19,12 +24,9 @@ import Heading from "components/polymorphicComponents/Heading";
 import SubParagraph from "components/SubParagraph";
 import { TertiaryBtn } from "components/Buttons/Buttons";
 
-// * skeleton components
-import LogoSkeleton from "components/Logo/LogoSkeleton";
-import Skeleton from "react-loading-skeleton";
-
 // ? rkt query import
 import { useGetAllCategoriesQuery } from "redux/api/category/categoryApi";
+import { usePostAuthUserMutation } from "redux/api/auth/authApi";
 
 const LoginBody = styled.main`
   min-height: 100vh;
@@ -46,22 +48,28 @@ const FormInput = styled.input`
 `;
 
 const Login = () => {
-  const { data, error, isLoading } = useGetAllCategoriesQuery();
-
-  if (data) {
-    console.log(data);
+  const navigate = useNavigate();
+  if (localStorage.getItem("accessToken")) {
+    navigate("/dashboard-monthly");
   }
-
   const dispatch = useDispatch();
 
-  const count = useSelector((state) => {
-    return state.counter.value;
-  });
-
-  const navigate = useNavigate();
-
-  const onSubmit = (values, actions) => {
-    navigate(`dashboard-monthly`);
+  const onSubmit = async (values, actions) => {
+    UserApiService.getAllUsers(values)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          toastMsg("Login successful", true);
+          dispatch(setLoggedUser(res.data.user));
+          res.data.accessToken && storeDataByValue("accessToken", res.data.accessToken);
+          // use dispatch to set logged user
+          navigate("/dashboard-monthly");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toastMsg(err.response.data.message, false);
+      });
     actions.resetForm();
   };
 
@@ -81,63 +89,22 @@ const Login = () => {
     onSubmit,
   });
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>An error occurred: {error.message}</div>;
-  }
-
   return (
     <LoginBody>
-      {/* ---------------------  */}
       <LoginHeadingAnimation>
         <div className='d-flex justify-content-center pt-5'>
           <Logo size='50px' alt='deerwalk logo' className='mt-5 mb-4' />
-          {/* <div className='mt-5 mb-4'>
-          <LogoSkeleton />
-        </div> */}
         </div>
       </LoginHeadingAnimation>
       <Heading as='h1' className='text-white text-center mt-4'>
         Maintenance Simplified
-        {/* <div className='ms-2 pt-2'>
-          <Skeleton style={{ width: "15rem", height: "1.5rem" }} duration={0.7} />
-        </div> */}
       </Heading>
-      <SubParagraph className='text-center'>
-        {/* {count} */}
-        {/* <button
-          onClick={() => {
-            dispatch(increment());
-          }}
-        >
-          Increase
-        </button> */}
-        {/* <button
-          onClick={() => {
-            dispatch(decrement());
-          }}
-        >
-          Dec
-        </button> */}
-        One stop solution to all your car needs.
-        {/* <div>
-          <Skeleton style={{ width: "18rem", height: "0.9rem" }} duration={0.7} />
-        </div> */}
-      </SubParagraph>
-
-      {/* ---------------------  */}
-
+      <SubParagraph className='text-center'>One stop solution to all your car needs.</SubParagraph>
       <LoginFormAnimation>
         <LoginForm onSubmit={handleSubmit} className='mt-4'>
           <header>
             <Heading as='h5' className='text-white text-center'>
               Login
-              {/* <div className='ms-2 pt-2'>
-              <Skeleton style={{ width: "4rem", height: "0.8rem" }} duration={0.7} />
-            </div> */}
             </Heading>
           </header>
           <FormInput name='phoneNumber' placeholder='Enter  phone number' type='text' className='roboto_regular mt-3 ' value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
@@ -146,12 +113,7 @@ const Login = () => {
           {errors.phoneNumber && <FormErrorTag> {errors.password}</FormErrorTag>}
           <div className='d-flex justify-content-end mt-3'>
             <Link to='/forgotpassword'>
-              <SubParagraph className='text-center'>
-                Forgot Password?
-                {/* <div>
-          <Skeleton style={{ width: "18rem", height: "0.9rem" }} duration={0.7} />
-        </div> */}
-              </SubParagraph>
+              <SubParagraph className='text-center'>Forgot Password?</SubParagraph>
             </Link>
           </div>
           <TertiaryBtn className='text-white mt-3' onClick={onSubmit}>

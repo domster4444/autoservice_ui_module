@@ -1,11 +1,13 @@
-import React, { Componnent } from "react";
-import { Route, Navigate } from "react-router-dom";
-// import isAuth  from "services/isAuth";
-
-const isAuth = true;
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { getDataByValue } from "services/LocalStorageService";
+import { useSelector } from "react-redux";
 
 const LoggedInPrivateRoute = ({ children }) => {
-  if (!isAuth) {
+  const loggedUser = useSelector((state) => state.loggedUser);
+  console.log(loggedUser);
+
+  if (!getDataByValue("accessToken" || !loggedUser)) {
     return <Navigate to='/' />;
   }
 

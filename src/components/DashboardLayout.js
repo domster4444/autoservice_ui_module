@@ -23,8 +23,6 @@ const Layout = ({ menus, pageTitle, path, children }) => {
             </FeaturedLeaf>
             <h4 className='my-2 ms-4 text-primary-blue dashboard-body-title'>{pageTitle}</h4>
             <Breadcrumb tagArray={path} />
-
-            {/* <Breadcrumb tagArray={["Dashboard", "User clients"]} /> */}
             {children}
           </div>
         </main>

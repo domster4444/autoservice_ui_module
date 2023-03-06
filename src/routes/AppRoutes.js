@@ -25,6 +25,8 @@ import Chat from "Pages/Chat";
 
 import ServiceCreate from "Pages/Dashboard/Admin/ServiceRequest/Create";
 import VehicleCreate from "Pages/Dashboard/Admin/Vehicle/Create";
+import CategoryCreate from "Pages/Dashboard/Admin/Category/Create";
+import OrganizationCreate from "Pages/Dashboard/Admin/Organization/Create";
 
 import ServiceRequestList from "Pages/Dashboard/Admin/ServiceRequest/List";
 import VehicleList from "Pages/Dashboard/Admin/Vehicle/List";
@@ -33,12 +35,11 @@ import OrganizationList from "Pages/Dashboard/Admin/Organization/List";
 import ClientList from "Pages/Dashboard/Admin/Users/Client/List";
 import MechanicList from "Pages/Dashboard/Admin/Users/Mechanic/List";
 import AdminList from "Pages/Dashboard/Admin/Users/Admin/List";
+import ChatRoom from "Pages/Dashboard/Admin/ChatRoom";
 
 const DashboardToolbarMenus = [];
 
 function App() {
-  // const { t } = useTranslation();
-
   useEffect(() => {
     if (Notification.permission !== "granted") Notification.requestPermission();
   });
@@ -71,6 +72,14 @@ function App() {
             }
           />
           <Route path='/chat' element={<Chat />} />
+          <Route
+            path='/chat-room'
+            element={
+              // <Layout menus={DashboardToolbarMenus} pageTitle={"Chat Room"} path={["Chat", "Room"]}>
+              <ChatRoom />
+              // </Layout>
+            }
+          />
           //* Service Routes
           <Route
             path='/service-create'
@@ -119,7 +128,7 @@ function App() {
             element={
               <LoggedInPrivateRoute>
                 <Layout menus={DashboardToolbarMenus} pageTitle={"Create Category"} path={["Dashboard", "Create Category"]}>
-                  <Login />
+                  <CategoryCreate />
                 </Layout>
               </LoggedInPrivateRoute>
             }
@@ -140,7 +149,7 @@ function App() {
             element={
               <LoggedInPrivateRoute>
                 <Layout menus={DashboardToolbarMenus} pageTitle={"Organization"} path={["Dashboard", "Create Organization"]}>
-                  <Login />
+                  <OrganizationCreate />
                 </Layout>
               </LoggedInPrivateRoute>
             }

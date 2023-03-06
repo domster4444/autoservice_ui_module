@@ -162,7 +162,7 @@ const CreateForm = () => {
 
   return (
     <>
-      <section id='visitor-form'>
+      <section id='visitor-form' className='shadow-sm pb-4'>
         <form action='post'>
           <div className='row mx-0 mt-3 mb-0 '>
             <SelectInput placeholder='Select vehicle ...' optionList={vehicleOptions} selectedOption={selectedVehicle} dispatch={dispatch} useReducerDispatchType={"SET_SELECTED_VEHICLE"} />

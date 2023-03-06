@@ -1,11 +1,24 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Link } from "react-router-dom";
-
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
 
+import { useDispatch } from "react-redux";
+
+import { removeDataByValue } from "services/LocalStorageService";
+import { removeLoggedUser } from "redux/features/loggedUser/loggedUserSlice";
+
 const MenuDropdown = ({ children }) => {
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    removeDataByValue("accessToken");
+    removeDataByValue("refreshToken");
+    dispatch(removeLoggedUser());
+    window.location.href = "/";
+  };
+
   return (
     <>
       <Dropdown>
@@ -17,7 +30,7 @@ const MenuDropdown = ({ children }) => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu className='p-2'>
-          <Link to='/'>
+          <Link onClick={logoutHandler}>
             <Dropdown.Item className='roboto_regular rounded-2 px-4 py-2 ' href='#/action-1'>
               <FiLogOut /> <span className='ms-2'>Logout</span>
             </Dropdown.Item>
