@@ -6,6 +6,8 @@ import { storeDataByValue } from "services/LocalStorageService";
 import styled from "styled-components";
 import FormErrorTag from "components/FormErrorTag/FormErrorTag";
 import toastMsg from "library/utilities/toastMsg";
+import ModalBox from "components/ModalBox";
+import AlertBody from "components/AlertBody";
 
 //*services
 import { UserApiService } from "services/auth/AuthService";

@@ -16,7 +16,7 @@ const Navigation = () => {
       /> */}
       <NavDropdown title='Categories' linkArray={["category-create", "category-list"]} nameList={["Create", "List"]} />
       <NavDropdown title='Organization' linkArray={["organization-create", "organization-list"]} nameList={["Create", "List"]} />
-      <NavDropdown title='Users' linkArray={["users-client", "users-mechanics", "users-admin"]} nameList={["Clients", "Mechanics", "Admin"]} />
+      <NavDropdown title='Users' linkArray={["users-client", "users-mechanics", "users-admin", "users-receptionist"]} nameList={["Clients", "Mechanics", "Admin", "Receptionist"]} />
     </aside>
   );
 };

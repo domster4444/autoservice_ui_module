@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from "react";
 import toastMsg from "library/utilities/toastMsg";
 import FormErrorTag from "components/FormErrorTag";
-
+import { CategoryApiService } from "services/category/CategoryService";
 const CreateForm = () => {
   const [formErrorMsg, setFormErrorMsg] = useState({
     status: false,
@@ -62,7 +62,18 @@ const CreateForm = () => {
       status: false,
       message: "",
     });
-    toastMsg("Service created successfully.", true);
+
+    CategoryApiService.createCategory(state)
+      .then((res) => {
+        toastMsg(res.data.message, true);
+      })
+      .catch((err) => {
+        toastMsg(" Something went wrong.", false);
+      })
+      .finally(() => {
+        dispatch({ type: "SET_CATEGORY_TITLE", payload: "" });
+        dispatch({ type: "SET_CATEGORY_DESCRIPTION", payload: "" });
+      });
   };
 
   return (

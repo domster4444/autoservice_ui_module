@@ -9,7 +9,7 @@ import AlertBody from "components/AlertBody";
 
 const List = () => {
   const navigate = useNavigate();
-  const { data: userData, isLoading: userLoading, isError: userError } = useGetUserByRoleQuery("admin");
+  const { data: userData, isLoading: userLoading, isError: userError } = useGetUserByRoleQuery("receptionist");
 
   const columns = [
     {

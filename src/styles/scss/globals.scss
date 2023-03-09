@@ -224,3 +224,15 @@ ul.breadcrumb li a:hover {
   background-color: var(--primary-blue) !important;
 }
 /* ? ====== form  styling   ends here*/
+
+// === react boostrap modal footer styling
+.modal-footer {
+  border-top: none;
+  margin: 0;
+}
+
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useGetVehicleQuery } from "redux/api/vehicle/vehicleApi";
 
 // * assets
 import Vehicle1 from "assets/images/most-visited-vehicle/1.jpg";
@@ -29,6 +30,15 @@ const ReportsCarouselContainer = styled.div`
   }
 `;
 const Admin = ({ chartData }) => {
+  const { data: vehicleData, error: vehicleError, isLoading: vehicleLoading } = useGetVehicleQuery();
+
+  if (vehicleLoading) return <div>Loading...</div>;
+  if (vehicleError) return <div>Error...</div>;
+
+  if (vehicleData) {
+    console.log(vehicleData);
+  }
+
   return (
     <DashboardContainer>
       <DashboardSection>

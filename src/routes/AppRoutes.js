@@ -35,6 +35,7 @@ import OrganizationList from "Pages/Dashboard/Admin/Organization/List";
 import ClientList from "Pages/Dashboard/Admin/Users/Client/List";
 import MechanicList from "Pages/Dashboard/Admin/Users/Mechanic/List";
 import AdminList from "Pages/Dashboard/Admin/Users/Admin/List";
+import ReceptionistList from "Pages/Dashboard/Admin/Users/Receptionist/List";
 import ChatRoom from "Pages/Dashboard/Admin/ChatRoom";
 
 const DashboardToolbarMenus = [];
@@ -165,13 +166,13 @@ function App() {
             }
           />
           //* User Routes
-          {/* //? users admin */}
+          {/* //? users client */}
           <Route
-            path='/users-admin'
+            path='/users-client'
             element={
               <LoggedInPrivateRoute>
-                <Layout menus={DashboardToolbarMenus} pageTitle={"Admin"} path={["Dashboard", "Admin Users"]}>
-                  <AdminList />
+                <Layout menus={DashboardToolbarMenus} pageTitle={"Client"} path={["Dashboard", "Client Users"]}>
+                  <ClientList />
                 </Layout>
               </LoggedInPrivateRoute>
             }
@@ -187,13 +188,24 @@ function App() {
               </LoggedInPrivateRoute>
             }
           />
-          {/* //? users client */}
+          {/* //? users admin */}
           <Route
-            path='/users-client'
+            path='/users-admin'
             element={
               <LoggedInPrivateRoute>
-                <Layout menus={DashboardToolbarMenus} pageTitle={"Client"} path={["Dashboard", "Client Users"]}>
-                  <ClientList />
+                <Layout menus={DashboardToolbarMenus} pageTitle={"Admin"} path={["Dashboard", "Admin Users"]}>
+                  <AdminList />
+                </Layout>
+              </LoggedInPrivateRoute>
+            }
+          />
+          {/* //? users admin */}
+          <Route
+            path='/users-receptionist'
+            element={
+              <LoggedInPrivateRoute>
+                <Layout menus={DashboardToolbarMenus} pageTitle={"Admin"} path={["Dashboard", "Admin Users"]}>
+                  <ReceptionistList />
                 </Layout>
               </LoggedInPrivateRoute>
             }

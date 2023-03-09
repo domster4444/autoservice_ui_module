@@ -1,6 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Select from "components/Select";
+
+import { useReducer } from "react";
+import { useGetUserQuery } from "redux/api/users/userApi";
+import { VehicleApiService } from "services/vehicle/VehicleService";
 
 const Create = () => {
+  const [vehicleNumber, setVehicleNumber] = useState("");
+  const [vehicleType, setVehicleType] = useState("personal");
+  const [blueBookFile, setBlueBookFile] = useState(null);
+  const [vehicleImageFile, setVehicleImageFile] = useState(null);
+
+  /* //* ----------------------------------------- Select Signifinicant codes lies here STARTS */
+  const { data: users, isLoading: userLoading, isError } = useGetUserQuery();
+
+  let initialSelectedUser = [];
+  let initialOptionsToSelectUser;
+  useEffect(() => {
+    if (users) {
+      initialOptionsToSelectUser = users.data.map((user) => {
+        return { value: user._id, label: user.name };
+      });
+    }
+  }, [userLoading]);
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "SET_SELECTED_USER":
+        return action.payload;
+      default:
+        return state;
+    }
+  };
+  const [selectedUser, dispatch] = useReducer(reducer, initialSelectedUser);
+
+  if (userLoading) return <div>Loading...</div>;
+  if (isError) return <div>Something went wrong...</div>;
+
+  /* //* --------------------------------------------------------- Select Signifinicant codes lies here ENDS */
+
+  // //! HANDLE SUBMIT FUNCTION
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const dataToSubmit = {
+      number: vehicleNumber,
+      type: vehicleType,
+      user_id: selectedUser.value,
+      bluebook: blueBookFile,
+      vehicle_image: vehicleImageFile,
+    };
+
+    VehicleApiService.createVehicle(dataToSubmit)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        console.log("finally");
+      });
+  };
   return (
     <section id='visitor-form' className='shadow-sm pb-4'>
       <form action='post' autocomplete='off' className='mt-3'>
@@ -10,14 +71,14 @@ const Create = () => {
               required
               type='text'
               className='form-control'
-              id='issue'
-              placeholder='Issue title'
-              // value={issueTitle}
+              id='vehicleNumber'
+              placeholder='Vehicle number'
+              value={vehicleNumber}
               onChange={(e) => {
-                // dispatch({ type: "SET_ISSUE_TITLE", payload: e.target.value });
+                setVehicleNumber(e.target.value);
               }}
             />
-            <label htmlFor='address'>Issue title</label>
+            <label htmlFor='address'>Vehicle number</label>
           </div>
         </div>
 
@@ -36,7 +97,7 @@ const Create = () => {
                     id='flexRadioDefault1'
                     defaultChecked
                     onClick={(e) => {
-                      // setVehicleType("personal");
+                      setVehicleType("personal");
                     }}
                   />
                   <label className='form-check-label' htmlFor='flexRadioDefault1'>
@@ -50,7 +111,7 @@ const Create = () => {
                     name='flexRadioDefault_second'
                     id='flexRadioDefault2'
                     onClick={(e) => {
-                      // setVehicleType("organizational");
+                      setVehicleType("organizational");
                     }}
                   />
                   <label className='form-check-label' htmlFor='flexRadioDefault2'>
@@ -62,8 +123,11 @@ const Create = () => {
           </div>
         </div>
 
-        <div className='col-12 col-sm w-100 form-floating'>{/* <UserList setSelectedUsers={setSelectedUsers} selectedUsers={selectedUsers} users={allUser} entries={1} /> */}</div>
-
+        <div className='col-12 col-sm w-100 form-floating'>
+          <div className='row mt-5'>
+            <Select optionList={initialOptionsToSelectUser} placeholder='Select Users' selectedOption={selectedUser} dispatch={dispatch} useReducerDispatchType='SET_SELECTED_USER' />
+          </div>
+        </div>
         <div className='row mt-5'>
           <div className='col-6 col-sm w-100 form-floating'>
             <div className='row mx-0 mt-1 mb-0 w-100'>
@@ -76,7 +140,7 @@ const Create = () => {
                   type='file'
                   id='formFile'
                   onChange={(e) => {
-                    // setVehicleImg(e.target.files[0]);
+                    setVehicleImageFile(e.target.files[0]);
                   }}
                 />
               </div>
@@ -92,7 +156,7 @@ const Create = () => {
                 type='file'
                 id='formFile'
                 onChange={(e) => {
-                  // setBluebookImg(e.target.files[0]);
+                  setBlueBookFile(e.target.files[0]);
                 }}
               />
             </div>
@@ -103,7 +167,7 @@ const Create = () => {
           <div className='col-12'>
             <button
               onClick={(e) => {
-                // handleSubmit(e);
+                handleSubmit(e);
               }}
               className='py-2 btn btstrp-shadow-effect w-100 mt-4 blue-bg text-white rounded-65'
             >

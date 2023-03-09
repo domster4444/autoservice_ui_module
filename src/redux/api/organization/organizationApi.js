@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { globalConstant } from "constant/constant";
 
-export const categoryApi = createApi({
-  reducerPath: "categoryApi",
+export const organizationApi = createApi({
+  reducerPath: "organizationApi",
   baseQuery: fetchBaseQuery({
     baseUrl: globalConstant.serverUrl,
   }),
@@ -17,9 +17,9 @@ export const categoryApi = createApi({
     // }),
 
     //--
-    getCategory: builder.query({
+    getOrganization: builder.query({
       query: () => ({
-        url: "/api/v1/categories/",
+        url: "/api/v1/organizations/",
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -30,4 +30,4 @@ export const categoryApi = createApi({
   }),
 });
 
-export const { useGetCategoryQuery } = categoryApi;
+export const { useGetOrganizationQuery } = organizationApi;

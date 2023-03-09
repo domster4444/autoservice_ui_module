@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { globalConstant } from "constant/constant";
 
-export const categoryApi = createApi({
-  reducerPath: "categoryApi",
+export const userApi = createApi({
+  reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: globalConstant.serverUrl,
   }),
@@ -17,9 +17,9 @@ export const categoryApi = createApi({
     // }),
 
     //--
-    getCategory: builder.query({
+    getUser: builder.query({
       query: () => ({
-        url: "/api/v1/categories/",
+        url: "/api/v1/users/",
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -27,7 +27,19 @@ export const categoryApi = createApi({
         },
       }),
     }),
+    //--
+    getUserByRole: builder.query({
+      query: (role) => ({
+        url: `/api/v1/users/role/${role}`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }),
+    }),
+    //--
   }),
 });
 
-export const { useGetCategoryQuery } = categoryApi;
+export const { useGetUserQuery, useGetUserByRoleQuery } = userApi;

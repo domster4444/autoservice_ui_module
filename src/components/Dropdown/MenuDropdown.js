@@ -9,14 +9,17 @@ import { useDispatch } from "react-redux";
 import { removeDataByValue } from "services/LocalStorageService";
 import { removeLoggedUser } from "redux/features/loggedUser/loggedUserSlice";
 
+import { useNavigate } from "react-router-dom";
+
 const MenuDropdown = ({ children }) => {
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
   const logoutHandler = () => {
     removeDataByValue("accessToken");
     removeDataByValue("refreshToken");
     dispatch(removeLoggedUser());
-    window.location.href = "/";
+    navigate("/");
   };
 
   return (

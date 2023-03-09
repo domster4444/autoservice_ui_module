@@ -14,6 +14,9 @@ import loggedUserReducer from "redux/features/loggedUser/loggedUserSlice";
 // todo: rtk queries
 import { categoryApi } from "redux/api/category/categoryApi";
 import { authApi } from "redux/api/auth/authApi";
+import { vehicleApi } from "redux/api/vehicle/vehicleApi";
+import { userApi } from "redux/api/users/userApi";
+import { organizationApi } from "redux/api/organization/organizationApi";
 
 // using combine reducer to combine redux toolkit and rtk queries
 const reducers = combineReducers({
@@ -24,6 +27,10 @@ const reducers = combineReducers({
   // RTK API QUERIES
   [categoryApi.reducerPath]: categoryApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
+  [vehicleApi.reducerPath]: vehicleApi.reducer,
+  [userApi.reducerPath]: userApi.reducer,
+  [categoryApi.reducerPath]: categoryApi.reducer,
+  [organizationApi.reducerPath]: organizationApi.reducer,
 });
 
 // configuration for redux toolkit
@@ -40,7 +47,7 @@ export const store = configureStore({
   devTools: globalConstant.environment !== "production",
 
   // middleware for RTK QUERY API
-  middleware: [...getDefaultMiddleware(), thunk, categoryApi.middleware, authApi.middleware],
+  middleware: [...getDefaultMiddleware(), thunk, categoryApi.middleware, authApi.middleware, vehicleApi.middleware, userApi.middleware, categoryApi.middleware, organizationApi.middleware],
 });
 
 setupListeners(store.dispatch);
